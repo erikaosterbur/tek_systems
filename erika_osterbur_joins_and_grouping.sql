@@ -65,3 +65,20 @@ order by `Total Sales` desc
 -- Write a query to output the month (January, February, etc.), 4-digit year, and total sales for that month.  
 -- The first column should be labeled ‘Month’, the second ‘Year’, and the third should be ‘Payments Received’.  
 -- Values in the third column should be formatted as numbers with two decimals – for example: 694,292.68.
+
+select monthname(o.orderDate) as `Month`, year(o.orderDate) as `Year`, format(sum(od.quantityOrdered*od.priceEach), 2) as `Payments Received`
+from orders as o
+join orderdetails as od on od.orderNumber = o.orderNumber 
+group by `Year`, `Month`
+;
+
+
+
+
+
+
+
+
+
+
+

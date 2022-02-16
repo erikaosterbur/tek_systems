@@ -8,11 +8,11 @@ where u.FIRST_NAME = 'Marion'
 ;
 
 -- 2. Create a query to select all users that have not made an order 
-
-
-
-
-
+select u.* 
+from users as u
+left join orders as o on u.USER_ID  = o.USER_ID 
+where o.USER_ID is null
+;
 
 -- 3. Create a Query to select the names and prices of all items that have been part of 2 or more separate orders. 
 

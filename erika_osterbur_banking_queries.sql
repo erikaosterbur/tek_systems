@@ -28,7 +28,7 @@ left join employee b on b.EMP_ID = e.SUPERIOR_EMP_ID
 
 -- 5. For each account, show the name of the account's product, the available balance, and the customer's last name.
 
-select p.NAME as `Product Name`, a.AVAIL_BALANCE as `Available Balance`, i.LAST_NAME as `Customer's Last Name`  
+select p.NAME as `Product Name`, a.AVAIL_BALANCE as `Available Balance`, i.LAST_NAME as `Customer Last Name`  
 from account as a
 join product p on p.PRODUCT_CD = a.PRODUCT_CD 
 join customer c on c.CUST_ID = a.CUST_ID 
@@ -44,4 +44,6 @@ join customer c on c.CUST_ID = a.CUST_ID
 join individual i on i.CUST_ID = c.CUST_ID 
 where i.LAST_NAME like 'T%'
 ;
+
+-- test change
 

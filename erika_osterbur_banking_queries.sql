@@ -45,5 +45,4 @@ join individual i on i.CUST_ID = c.CUST_ID
 where i.LAST_NAME like 'T%'
 ;
 
--- test change
 

@@ -35,6 +35,13 @@ group by status
 -- The first column should be “Product Line” and the second should be “# Sold”.  
 -- Order by the second column descending.
 
+select pl.productLine as `Product Line`, count(p.productLine) as `# Sold`
+from productlines as pl
+join products as p on p.productLine = pl.productLine 
+join orderdetails as od on od.productCode = p.productCode 
+group by pl.productLine 
+order by `# Sold` desc
+;
 
 -- 5. For each employee who represents customers, output the total # of orders that employee’s customers have placed alongside the total sale amount of those orders.  
 -- The employee name should be output as a single column named “Sales Rep” formatted as “lastName, firstName”.  

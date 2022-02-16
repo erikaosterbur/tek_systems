@@ -1,0 +1,84 @@
+DROP DATABASE IF EXISTS mock_sba_db;
+CREATE DATABASE mock_sba_db;
+USE mock_sba_db;
+
+CREATE TABLE users (
+USER_ID INTEGER PRIMARY KEY,
+FIRST_NAME VARCHAR(30),
+LAST_NAME VARCHAR(30),
+CITY VARCHAR(60)
+);
+
+CREATE TABLE stores (
+STORE_ID INTEGER PRIMARY KEY,
+NAME VARCHAR(100),
+CITY VARCHAR(60),
+SALES_TAX_RATE DECIMAL(6,5)
+);
+
+CREATE TABLE items (
+ITEM_ID INTEGER PRIMARY KEY,
+NAME VARCHAR(30),
+PRICE DECIMAL(5,2)
+);
+
+CREATE TABLE orders (
+ORDER_ID INTEGER PRIMARY KEY,
+USER_ID INTEGER,
+STORE_ID INTEGER,
+CONSTRAINT FK_UserID FOREIGN KEY (USER_ID) REFERENCES users(USER_ID),
+CONSTRAINT FK_StoreID FOREIGN KEY (STORE_ID) REFERENCES stores(STORE_ID)
+);
+
+CREATE TABLE order_items (
+ORDER_ID INTEGER,
+ITEM_ID INTEGER,
+QUANTITY INTEGER,
+CONSTRAINT PK_Order_Items PRIMARY KEY (ORDER_ID, ITEM_ID),
+CONSTRAINT FK_OrderID FOREIGN KEY (ORDER_ID) REFERENCES orders(ORDER_ID),
+CONSTRAINT FK_ItemID FOREIGN KEY (ITEM_ID) REFERENCES items(ITEM_ID)
+);
+
+
+
+INSERT INTO users VALUES (1, 'Lucien', 'Arnolfi', 'New York');
+INSERT INTO users VALUES (2, 'Susila', 'Foster', 'Stamford');
+INSERT INTO users VALUES (3, 'Marion', 'Cole', 'New York');
+INSERT INTO users VALUES (4, 'Edna', 'Kay', 'New York');
+INSERT INTO users VALUES (5, 'Meridith', 'Stefanov', 'Stamford');
+INSERT INTO users VALUES (6, 'Mike', 'G', 'New York');
+
+INSERT INTO stores VALUES (1, 'Bronx Location', 'New York', 0.08875);
+INSERT INTO stores VALUES (2, 'Financial District', 'New York', 0.08875);
+INSERT INTO stores VALUES (3, 'Harlem Location', 'New York', 0.08875);
+INSERT INTO stores VALUES (4, 'North Stamford Location', 'Stamford', 0.0635);
+INSERT INTO stores VALUES (5, 'South Stamford Location', 'Stamford', 0.0635);
+
+INSERT INTO items VALUES (1,'Hotdog',1.35);
+INSERT INTO items VALUES (2,'Hamburger', 2.00);
+INSERT INTO items VALUES (3,'Cheeseburger',2.50);
+INSERT INTO items VALUES (4,'Fries',1.00);
+INSERT INTO items VALUES (5,'Soda',1.00);
+
+
+INSERT INTO orders VALUES(1,1,1);
+INSERT INTO orders VALUES(2,3,1);
+INSERT INTO orders VALUES(3,3,3);
+INSERT INTO orders VALUES(4,2,5);
+INSERT INTO orders VALUES(5,4,1);
+INSERT INTO orders VALUES(6,5,5);
+INSERT INTO orders VALUES(7,1,2);
+INSERT INTO orders VALUES(8,5,4);
+
+INSERT INTO order_items VALUES(1,1,2);
+INSERT INTO order_items VALUES(1,4,1);
+INSERT INTO order_items VALUES(1,5,1);
+INSERT INTO order_items VALUES(2,3,1);
+INSERT INTO order_items VALUES(2,5,1);
+INSERT INTO order_items VALUES(3,4,8);
+INSERT INTO order_items VALUES(4,3,1);
+INSERT INTO order_items VALUES(4,4,1);
+INSERT INTO order_items VALUES(5,5,1);
+INSERT INTO order_items VALUES(6,1,2);
+INSERT INTO order_items VALUES(7,1,2);
+INSERT INTO order_items VALUES(8,1,2);

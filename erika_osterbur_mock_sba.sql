@@ -43,10 +43,6 @@ group by `ITEM_NAME`
 order by `REVENUE` desc
 ;
 
-
-
-
-
 -- 6. Create a query with the following output: 
 	-- a. Column 1 - Store Name 
 		-- i. The name of each store 
@@ -57,4 +53,36 @@ order by `REVENUE` desc
 		-- ii. If the store has been involved in less than 3 orders but more than 1 order, mark as ‘Medium’ 
 		-- iii. If the store has been involved with 1 or less orders, mark as ‘Low’ 
 	-- d. Should be ordered by the Order Quantity in Descending Order 
+
+select s.NAME, COUNT(s.STORE_ID) as `ORDER_QUANTITY`,
+(case 
+when COUNT(s.STORE_ID) > 3 then 'High'
+when COUNT(s.STORE_ID) <= 3 and COUNT(s.STORE_ID) > 1 then 'Medium'
+when COUNT(s.STORE_ID) <= 1 then 'Low'
+end) as `SALES_FIGURE`
+from stores as s
+join orders as o on s.STORE_ID = o.STORE_ID 
+group by s.STORE_ID 
+order by `ORDER_QUANTITY` desc
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	 

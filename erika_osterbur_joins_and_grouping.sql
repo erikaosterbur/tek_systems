@@ -4,6 +4,11 @@ use classicmodels;
 -- The employee name should be in a single “Sales Rep” column formatted as “lastName, firstName”.  
 -- The output should be sorted alphabetically by customer name.
 
+select c.customerName as `Customer Name`, concat(e.lastName, ", ", e.firstName) as `Sales Rep`
+from customers as c
+join employees as e on e.employeeNumber = c.salesRepEmployeeNumber 
+order by `Customer Name` asc
+;
 
 -- 2. Determine which products are most popular with our customers.  
 -- For each product, list the total quantity ordered along with the total sale generated (total quantity ordered * priceEach) for that product.  

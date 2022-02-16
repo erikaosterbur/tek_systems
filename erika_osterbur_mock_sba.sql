@@ -15,12 +15,12 @@ where o.USER_ID is null
 ;
 
 -- 3. Create a Query to select the names and prices of all items that have been part of 2 or more separate orders. 
--- looking for repeats in item_id
-select *
+select i.*
 from order_items as oi
 join items as i on oi.ITEM_ID = i.ITEM_ID 
+group by i.ITEM_ID 
+having count(oi.ORDER_ID) > 1
 ;
-
 
 -- 4. Create a query to return the Order Id, Item name, Item Price, and Quantity from orders made at stores in the city “New York”. 
 -- Order by Order Id in ascending order. 

@@ -37,7 +37,7 @@ join individual i on i.CUST_ID = c.CUST_ID
 
 -- 6. List all account transaction details for individual customers whose last name starts with 'T'.
 
-select ac.TXN_ID, ac.AMOUNT, ac.FUNDS_AVAIL_DATE, ac.TXN_DATE, ac.TXN_TYPE_CD, ac.ACCOUNT_ID, ac.EXECUTION_BRANCH_ID, ac.TELLER_EMP_ID  
+select *  
 from acc_transaction as ac
 join account a on a.ACCOUNT_ID = ac.ACCOUNT_ID
 join customer c on c.CUST_ID = a.CUST_ID 

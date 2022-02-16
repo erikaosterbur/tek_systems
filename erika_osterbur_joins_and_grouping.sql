@@ -49,6 +49,17 @@ order by `# Sold` desc
 -- Sort the output by Total Sales descending.  
 -- Only (and all) employees with the job title ‘Sales Rep’ should be included in the output, and if the employee made no sales the Total Sales should display as “0.00”.
 
+select concat(e.lastName, ", ", e.firstName) as `Sales Rep`, 
+count(od.orderNumber) as `# Orders`, 
+ifnull(sum(od.quantityOrdered*od.priceEach), '0.00') as `Total Sales`
+from employees as e
+left join customers as c on c.salesRepEmployeeNumber = e.employeeNumber 
+left join orders as o on o.customerNumber = c.customerNumber 
+left join orderdetails as od on od.orderNumber = o.orderNumber
+where e.jobTitle = 'Sales Rep'
+group by `Sales Rep`
+order by `Total Sales` desc
+;
 
 -- 6. Your product team is requesting data to help them create a bar-chart of monthly sales since the company’s inception.  
 -- Write a query to output the month (January, February, etc.), 4-digit year, and total sales for that month.  

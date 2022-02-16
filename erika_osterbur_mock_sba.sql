@@ -1,10 +1,11 @@
 use mock_sba_db;
 
 -- 1. Create a query to return all orders made by users with the first name of “Marion” 
-
-
-
-
+select o.* 
+from orders as o
+join users as u on u.USER_ID = o.USER_ID
+where u.FIRST_NAME = 'Marion'
+;
 
 -- 2. Create a query to select all users that have not made an order 
 

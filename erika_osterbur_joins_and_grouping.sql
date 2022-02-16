@@ -26,6 +26,10 @@ order by `Total Sale` desc
 -- Column headers should be “Order Status” and “# Orders”.  
 -- Sort alphabetically by status.
 
+select status as `Order Status`, count(status) as `# Orders`  
+from orders
+group by status
+;
 
 -- 4. Write a query to list, for each product line, the total # of products sold from that product line.  
 -- The first column should be “Product Line” and the second should be “# Sold”.  

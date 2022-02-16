@@ -15,6 +15,12 @@ order by `Customer Name` asc
 -- The column headers should be “Product Name”, “Total # Ordered” and “Total Sale”.  
 -- List the products by Total Sale descending.
 
+select p.productName as `Product Name`, o.quantityOrdered as `Total # Ordered`, sum(o.quantityOrdered*o.priceEach) as `Total Sale`
+from orderdetails as o
+join products as p on p.productCode = o.productCode 
+group by o.orderNumber 
+order by `Total Sale` desc
+;
 
 -- 3. Write a query which lists order status and the # of orders with that status.  
 -- Column headers should be “Order Status” and “# Orders”.  
